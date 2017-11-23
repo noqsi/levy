@@ -1,0 +1,16 @@
+name : counter {
+	when {
+		physical(sensor) > 6.5(0.1)
+	} increment;
+	when {
+		physical(sensor) < 6.2
+	} decrement;
+	when {
+		global_reset > 0
+	} clear;
+}
+
+action {
+	counter_or_sensor > 5;
+	other_thing > 6;
+} Camera_Off(1);
