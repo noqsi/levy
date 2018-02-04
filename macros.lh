@@ -1,0 +1,45 @@
+/*
+Macro for an ordinary sensor.
+*/
+
+#define window(sensor,very_low,low,high,very_high,do_reset,do_power_off,operational) \
+{ \
+	counter bad_low, very_bad_low, bad_high, very_bad_high; \
+	sensor < very_low increment very_bad_low; \
+	sensor > very_low decrement very_bad_low; \
+	sensor < low increment bad_low; \
+	sensor > low decrement bad_low; \
+	sensor > high increment bad_high; \
+	sensor < high decrement bad_high; \
+	sensor > very_high increment very_bad_high; \
+	sensor < very_high decrement very_bad_high; \
+\
+	// All that was useless if we're not operational \
+	// Reset the local machinery between operational episodes \
+\
+	operational = 0 \
+		reset very_bad_low \
+		reset bad_low \
+		reset bad_high \
+		reset very_bad_high \
+	; \
+\
+	very_bad_low > VERY_BAD_LIMIT increment do_power_off; \
+	very_bad_high > VERY_BAD_LIMIT increment do_power_off; \
+	bad_low > BAD_LIMIT increment do_reset; \
+	bad_high > BAD_LIMIT increment do_reset; \
+}
+
+#define camsensor(cam,sensor) fix this to adjust sensor addr
+
+// Voltage window macros
+
+#define vw_1(s,vnom,tol) window(camsensor(1,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_1,power_off_1,operational_1)
+#define vw_2(s,vnom,tol) window(camsensor(2,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_2,power_off_2,operational_2)
+#define vw_3(s,vnom,tol) window(camsensor(3,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_3,power_off_3,operational_3)
+#define vw_4(s,vnom,tol) window(camsensor(4,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_4,power_off_4,operational_4)
+

@@ -1,0 +1,12 @@
+// Arbitrary external command codes
+// Anything else is equivalent to NO_COMMAND
+
+#define NO_COMMAND 0
+#define TURN_ON_1 18
+#define TURN_OFF_1 19
+#define TURN_ON_2 28
+#define TURN_OFF_2 29
+#define TURN_ON_3 38
+#define TURN_OFF_3 39
+#define TURN_ON_4 48
+#define TURN_OFF_4 49

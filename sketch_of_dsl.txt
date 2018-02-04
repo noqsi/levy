@@ -1,16 +1,27 @@
-name : counter {
-	when {
-		physical(sensor) > 6.5(0.1)
-	} increment;
-	when {
-		physical(sensor) < 6.2
-	} decrement;
-	when {
-		global_reset > 0
-	} clear;
-}
 
-action {
-	counter_or_sensor > 5;
-	other_thing > 6;
-} Camera_Off(1);
+
+program = { statement } ;
+statement = ( counter_declaration | command ) ";" ;
+counter_declaration = "counter" ","%{ counter_name } ;
+command = predicate { action } ;
+predicate = (sensor_id | counter_name ) ( "<" | "<=" | "=" | ">=" | ">" ) value ["(" delta ")"] [unit];
+sensor_id = numeric_expression ;
+value = numeric_expression ;
+delta = numeric_expression ;
+unit = "volt" | "amp" | "celsius" | "kelvin" | "adu" | "counts" ;
+action = [color] ( count_action  counter_name ) | ( other_action numeric_expression ) ;
+color = "green" | "yellow" | "red" ;
+count_action = "increment" | "decrement" | "reset";
+other_action = 
+	"no_action" | 
+	"processor_reset" | 
+	"image_process_reset" | 
+	"fpe_reset" | 
+	"camera_off" |
+	"camera_on" |
+	"disable_recorder" |
+	"enable_recorder" |
+	"run_program" |
+	"spawn_program" ;
+
+
