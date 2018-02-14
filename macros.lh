@@ -14,8 +14,8 @@ Macro for an ordinary sensor.
 	sensor > very_high increment very_bad_high; \
 	sensor < very_high decrement very_bad_high; \
 \
-	// All that was useless if we're not operational \
-	// Reset the local machinery between operational episodes \
+	/* All that was useless if we are not operational */ \
+	/* Reset the local machinery between operational episodes */ \
 \
 	operational = 0 \
 		reset very_bad_low \
@@ -34,12 +34,12 @@ Macro for an ordinary sensor.
 
 // Voltage window macros
 
-#define vw_1(s,vnom,tol) window(camsensor(1,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+#define vw_1(s,vnom,tol) window(camsensor(1,s), ((vnom)-2*(tol)) volt, ((vnom)-(tol)) volt, \
 	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_1,power_off_1,operational_1)
-#define vw_2(s,vnom,tol) window(camsensor(2,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+#define vw_2(s,vnom,tol) window(camsensor(2,s), ((vnom)-2*(tol)) volt, ((vnom)-(tol)) volt, \
 	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_2,power_off_2,operational_2)
-#define vw_3(s,vnom,tol) window(camsensor(3,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+#define vw_3(s,vnom,tol) window(camsensor(3,s), ((vnom)-2*(tol)) volt, ((vnom)-(tol)) volt, \
 	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_3,power_off_3,operational_3)
-#define vw_4(s,vnom,tol) window(camsensor(4,s), ((vnom)-2*(tol) volt, ((vnom)-(tol)) volt, \
+#define vw_4(s,vnom,tol) window(camsensor(4,s), ((vnom)-2*(tol)) volt, ((vnom)-(tol)) volt, \
 	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_4,power_off_4,operational_4)
 
