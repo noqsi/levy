@@ -31,8 +31,8 @@ Limit tests should generally ignore bad readings unless in the operational state
 */
 
 
-// Assume master_command set from outside.
-// Once per cycle, the external machinery can set it to do something.
+/* Assume master_command set from outside.*/
+/* Once per cycle, the external machinery can set it to do something.*/
 
 counter master_command;
 
@@ -51,7 +51,7 @@ master_command = TURN_ON_1
 	reset do_power_off_1
 	reset power_off_wait_1
 	reset power_on_count_1
-	increment do_power_on_1		// Trigger power on below
+	increment do_power_on_1		/* Trigger power on below*/
 	reset power_on_wait_1
 	reset operational_1
 	reset master_command
@@ -61,9 +61,9 @@ master_command = TURN_OFF_1
 	reset do_reset_1
 	reset reset_wait_1
 	reset reset_count_1
-	camera_off 1			// Turn power off
-	reset do_power_off_1		// directly without
-	reset power_off_wait_1		// setting up automatic power on
+	camera_off 1			/* Turn power off*/
+	reset do_power_off_1		/* directly without*/
+	reset power_off_wait_1		/* setting up automatic power on*/
 	reset power_on_count_1
 	reset do_power_on_1
 	reset power_on_wait_1
@@ -72,19 +72,19 @@ master_command = TURN_OFF_1
 ;	
 
 reset_wait_1 > RESET_WAIT
-	green increment operational_1		// We are presumably up and running
+	green increment operational_1		/* We are presumably up and running*/
 	reset reset_wait_1
 ;
 reset_wait_1 > 0 increment reset_wait_1;
 
 power_off_wait_1 > POWER_OFF_WAIT
-	increment do_power_on_1			// Attempt to finish the cycle
+	increment do_power_on_1			/* Attempt to finish the cycle*/
 	reset power_off_wait_1
 ;
 power_off_wait_1 > 0 increment power_off_wait_1
 
 power_on_wait_1 > POWER_ON_WAIT
-	green increment operational_1		// We are presumably up and running
+	green increment operational_1		/* We are presumably up and running*/
 	reset power_on_wait_1
 ;
 power_on_wait_1 > 0 increment power_on_wait_1;
@@ -102,7 +102,7 @@ master_command = TURN_ON_2
 	reset do_power_off_2
 	reset power_off_wait_2
 	reset power_on_count_2
-	increment do_power_on_2		// Trigger power on below
+	increment do_power_on_2		/* Trigger power on below*/
 	reset power_on_wait_2
 	reset operational_2
 	reset master_command
@@ -112,9 +112,9 @@ master_command = TURN_OFF_2
 	reset do_reset_2
 	reset reset_wait_2
 	reset reset_count_2
-	camera_off 2			// Turn power off
-	reset do_power_off_2		// directly without
-	reset power_off_wait_2		// setting up automatic power on
+	camera_off 2			/* Turn power off*/
+	reset do_power_off_2		/* directly without*/
+	reset power_off_wait_2		/* setting up automatic power on*/
 	reset power_on_count_2
 	reset do_power_on_2
 	reset power_on_wait_2
@@ -123,19 +123,19 @@ master_command = TURN_OFF_2
 ;	
 
 reset_wait_2 > RESET_WAIT
-	green increment operational_2		// We are presumably up and running
+	green increment operational_2		/* We are presumably up and running*/
 	reset reset_wait_2
 ;
 reset_wait_2 > 0 increment reset_wait_2;
 
 power_off_wait_2 > POWER_OFF_WAIT
-	increment do_power_on_2			// Attempt to finish the cycle
+	increment do_power_on_2			/* Attempt to finish the cycle*/
 	reset power_off_wait_2
 ;
 power_off_wait_2 > 0 increment power_off_wait_2
 
 power_on_wait_2 > POWER_ON_WAIT
-	green increment operational_2		// We are presumably up and running
+	green increment operational_2		/* We are presumably up and running*/
 	reset power_on_wait_2
 ;
 power_on_wait_2 > 0 increment power_on_wait_2;
@@ -153,7 +153,7 @@ master_command = TURN_ON_3
 	reset do_power_off_3
 	reset power_off_wait_3
 	reset power_on_count_3
-	increment do_power_on_3		// Trigger power on below
+	increment do_power_on_3		/* Trigger power on below*/
 	reset power_on_wait_3
 	reset operational_3
 	reset master_command
@@ -163,9 +163,9 @@ master_command = TURN_OFF_3
 	reset do_reset_3
 	reset reset_wait_3
 	reset reset_count_3
-	camera_off 3			// Turn power off
-	reset do_power_off_3		// directly without
-	reset power_off_wait_3		// setting up automatic power on
+	camera_off 3			/* Turn power off*/
+	reset do_power_off_3		/* directly without*/
+	reset power_off_wait_3		/* setting up automatic power on*/
 	reset power_on_count_3
 	reset do_power_on_3
 	reset power_on_wait_3
@@ -174,19 +174,19 @@ master_command = TURN_OFF_3
 ;	
 
 reset_wait_3 > RESET_WAIT
-	green increment operational_3		// We are presumably up and running
+	green increment operational_3		/* We are presumably up and running*/
 	reset reset_wait_3
 ;
 reset_wait_3 > 0 increment reset_wait_3;
 
 power_off_wait_3 > POWER_OFF_WAIT
-	increment do_power_on_3			// Attempt to finish the cycle
+	increment do_power_on_3			/* Attempt to finish the cycle*/
 	reset power_off_wait_3
 ;
 power_off_wait_3 > 0 increment power_off_wait_3
 
 power_on_wait_3 > POWER_ON_WAIT
-	green increment operational_3		// We are presumably up and running
+	green increment operational_3		/* We are presumably up and running*/
 	reset power_on_wait_3
 ;
 power_on_wait_3 > 0 increment power_on_wait_3;
@@ -204,7 +204,7 @@ master_command = TURN_ON_4
 	reset do_power_off_4
 	reset power_off_wait_4
 	reset power_on_count_4
-	increment do_power_on_4		// Trigger power on below
+	increment do_power_on_4		/* Trigger power on below*/
 	reset power_on_wait_4
 	reset operational_4
 	reset master_command
@@ -214,9 +214,9 @@ master_command = TURN_OFF_4
 	reset do_reset_4
 	reset reset_wait_4
 	reset reset_count_4
-	camera_off 4			// Turn power off
-	reset do_power_off_4		// directly without
-	reset power_off_wait_4		// setting up automatic power on
+	camera_off 4			/* Turn power off*/
+	reset do_power_off_4		/* directly without*/
+	reset power_off_wait_4		/* setting up automatic power on*/
 	reset power_on_count_4
 	reset do_power_on_4
 	reset power_on_wait_4
@@ -225,49 +225,49 @@ master_command = TURN_OFF_4
 ;	
 
 reset_wait_4 > RESET_WAIT
-	green increment operational_4		// We are presumably up and running
+	green increment operational_4		/* We are presumably up and running*/
 	reset reset_wait_4
 ;
 reset_wait_4 > 0 increment reset_wait_4;
 
 power_off_wait_4 > POWER_OFF_WAIT
-	increment do_power_on_4			// Attempt to finish the cycle
+	increment do_power_on_4			/* Attempt to finish the cycle*/
 	reset power_off_wait_4
 ;
 power_off_wait_4 > 0 increment power_off_wait_4
 
 power_on_wait_4 > POWER_ON_WAIT
-	green increment operational_4		// We are presumably up and running
+	green increment operational_4		/* We are presumably up and running*/
 	reset power_on_wait_4
 ;
 power_on_wait_4 > 0 increment power_on_wait_4;
 
-// Specific limit code belongs here
+/* Specific limit code belongs here*/
 
 #include "driver_limits.lh"
 
-do_power_off_1 > 0 reset do_reset_1;		// Power off preempts reset
+do_power_off_1 > 0 reset do_reset_1;		/* Power off preempts reset*/
 
-do_reset_1 > 0 increment reset_count_1;		// Before reset, check for too many.
+do_reset_1 > 0 increment reset_count_1;		/* Before reset, check for too many.*/
 reset_count_1 > MAX_RESETS
 	reset do_reset_1
-	increment do_power_off_1		// Power off instead.
+	increment do_power_off_1		/* Power off instead.*/
 ;
 
 do_reset_1 > 0
 	red fpe_reset 1
 	reset operational_1
-	increment reset_wait_1			// go to wait state
+	increment reset_wait_1			/* go to wait state*/
 	reset do_reset_1
 ;
 	
-do_power_on_1 > 0 increment power_on_count_1;		// Before power on, check for too many
-power_on_count_1 > MAX_POWER_CYCLES reset do_power_on_1;	// No uncommanded exit from this state
+do_power_on_1 > 0 increment power_on_count_1;		/* Before power on, check for too many*/
+power_on_count_1 > MAX_POWER_CYCLES reset do_power_on_1;	/* No uncommanded exit from this state*/
 
 do_power_on_1 > 0
 	camera_on 1
 	reset operational_1
-	increment power_on_wait_1			// go to wait state
+	increment power_on_wait_1			/* go to wait state*/
 	reset do_power_on_1
 	reset reset_count_1
 ;
@@ -275,32 +275,32 @@ do_power_on_1 > 0
 do_power_off_1 > 0
 	red camera_off 1
 	reset operational_1
-	increment power_off_wait_1		// go to wait state
+	increment power_off_wait_1		/* go to wait state*/
 	reset do_power_off_1
 ;
 
-do_power_off_2 > 0 reset do_reset_2;		// Power off preempts reset
+do_power_off_2 > 0 reset do_reset_2;		/* Power off preempts reset*/
 
-do_reset_2 > 0 increment reset_count_2;		// Before reset, check for too many.
+do_reset_2 > 0 increment reset_count_2;		/* Before reset, check for too many.*/
 reset_count_2 > MAX_RESETS
 	reset do_reset_2
-	increment do_power_off_2		// Power off instead.
+	increment do_power_off_2		/* Power off instead.*/
 ;
 
 do_reset_2 > 0
 	red fpe_reset 2
 	reset operational_2
-	increment reset_wait_2			// go to wait state
+	increment reset_wait_2			/* go to wait state*/
 	reset do_reset_2
 ;
 	
-do_power_on_2 > 0 increment power_on_count_2;		// Before power on, check for too many
-power_on_count_2 > MAX_POWER_CYCLES reset do_power_on_2;	// No uncommanded exit from this state
+do_power_on_2 > 0 increment power_on_count_2;		/* Before power on, check for too many*/
+power_on_count_2 > MAX_POWER_CYCLES reset do_power_on_2;	/* No uncommanded exit from this state*/
 
 do_power_on_2 > 0
 	camera_on 2
 	reset operational_2
-	increment power_on_wait_2			// go to wait state
+	increment power_on_wait_2			/* go to wait state*/
 	reset do_power_on_2
 	reset reset_count_2
 ;
@@ -308,32 +308,32 @@ do_power_on_2 > 0
 do_power_off_2 > 0
 	red camera_off 2
 	reset operational_2
-	increment power_off_wait_2		// go to wait state
+	increment power_off_wait_2		/* go to wait state*/
 	reset do_power_off_2
 ;
 
-do_power_off_3 > 0 reset do_reset_3;		// Power off preempts reset
+do_power_off_3 > 0 reset do_reset_3;		/* Power off preempts reset*/
 
-do_reset_3 > 0 increment reset_count_3;		// Before reset, check for too many.
+do_reset_3 > 0 increment reset_count_3;		/* Before reset, check for too many.*/
 reset_count_3 > MAX_RESETS
 	reset do_reset_3
-	increment do_power_off_3		// Power off instead.
+	increment do_power_off_3		/* Power off instead.*/
 ;
 
 do_reset_3 > 0
 	red fpe_reset 3
 	reset operational_3
-	increment reset_wait_3			// go to wait state
+	increment reset_wait_3			/* go to wait state*/
 	reset do_reset_3
 ;
 	
-do_power_on_3 > 0 increment power_on_count_3;		// Before power on, check for too many
-power_on_count_3 > MAX_POWER_CYCLES reset do_power_on_3;	// No uncommanded exit from this state
+do_power_on_3 > 0 increment power_on_count_3;		/* Before power on, check for too many*/
+power_on_count_3 > MAX_POWER_CYCLES reset do_power_on_3;	/* No uncommanded exit from this state*/
 
 do_power_on_3 > 0
 	camera_on 3
 	reset operational_3
-	increment power_on_wait_3			// go to wait state
+	increment power_on_wait_3			/* go to wait state*/
 	reset do_power_on_3
 	reset reset_count_3
 ;
@@ -341,32 +341,32 @@ do_power_on_3 > 0
 do_power_off_3 > 0
 	red camera_off 3
 	reset operational_3
-	increment power_off_wait_3		// go to wait state
+	increment power_off_wait_3		/* go to wait state*/
 	reset do_power_off_3
 ;
 
-do_power_off_4 > 0 reset do_reset_4;		// Power off preempts reset
+do_power_off_4 > 0 reset do_reset_4;		/* Power off preempts reset*/
 
-do_reset_4 > 0 increment reset_count_4;		// Before reset, check for too many.
+do_reset_4 > 0 increment reset_count_4;		/* Before reset, check for too many.*/
 reset_count_4 > MAX_RESETS
 	reset do_reset_4
-	increment do_power_off_4		// Power off instead.
+	increment do_power_off_4		/* Power off instead.*/
 ;
 
 do_reset_4 > 0
 	red fpe_reset 4
 	reset operational_4
-	increment reset_wait_4			// go to wait state
+	increment reset_wait_4			/* go to wait state*/
 	reset do_reset_4
 ;
 	
-do_power_on_4 > 0 increment power_on_count_4;		// Before power on, check for too many
-power_on_count_4 > MAX_POWER_CYCLES reset do_power_on_4;	// No uncommanded exit from this state
+do_power_on_4 > 0 increment power_on_count_4;		/* Before power on, check for too many*/
+power_on_count_4 > MAX_POWER_CYCLES reset do_power_on_4;	/* No uncommanded exit from this state*/
 
 do_power_on_4 > 0
 	camera_on 4
 	reset operational_4
-	increment power_on_wait_4			// go to wait state
+	increment power_on_wait_4			/* go to wait state*/
 	reset do_power_on_4
 	reset reset_count_4
 ;
@@ -374,7 +374,7 @@ do_power_on_4 > 0
 do_power_off_4 > 0
 	red camera_off 4
 	reset operational_4
-	increment power_off_wait_4		// go to wait state
+	increment power_off_wait_4		/* go to wait state*/
 	reset do_power_off_4
 ;
 

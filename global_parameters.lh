@@ -5,11 +5,11 @@ Preliminary 20180201
 Placeholders for development: no serious research went into these. 
 */
 
-#define MAX_RESETS 5		// How many FPE resets before we decide it is not clearing the problem
-#define MAX_POWER_CYCLES 5	// How many power cycles before we give up and wait for external command
-#define BAD_LIMIT 10		// Number of bad readings per sensor to provoke an FPE reset
-#define VERY_BAD_LIMIT 5	// Very bad readings to trigger camera power cycle
-// VERY_BAD_LIMIT should be smaller than BAD_LIMIT to prevent resets from preempting power cycles.
-#define RESET_WAIT 50		// Number of data collection cycles to wait for reset to complete
-#define POWER_OFF_WAIT 10	// Number of data collection cycles to wait for power off to complete
-#define POWER_ON_WAIT 60	// Number of data collection cycles to wait for power on to complete
+#define MAX_RESETS 5		/* How many FPE resets before we decide it is not clearing the problem*/
+#define MAX_POWER_CYCLES 5	/* How many power cycles before we give up and wait for external command*/
+#define BAD_LIMIT 10		/* Number of bad readings per sensor to provoke an FPE reset*/
+#define VERY_BAD_LIMIT 5	/* Very bad readings to trigger camera power cycle*/
+/* VERY_BAD_LIMIT should be smaller than BAD_LIMIT to prevent resets from preempting power cycles.*/
+#define RESET_WAIT 50		/* Number of data collection cycles to wait for reset to complete*/
+#define POWER_OFF_WAIT 10	/* Number of data collection cycles to wait for power off to complete*/
+#define POWER_ON_WAIT 60	/* Number of data collection cycles to wait for power on to complete*/

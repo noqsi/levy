@@ -32,7 +32,7 @@ Macro for an ordinary sensor.
 
 #define camsensor(cam,sensor) fix this to adjust sensor addr
 
-// Voltage window macros
+/* Voltage window macros*/
 
 #define vw_1(s,vnom,tol) window(camsensor(1,s), ((vnom)-2*(tol)) volt, ((vnom)-(tol)) volt, \
 	((vnom)+(tol)) volt, ((vnom)+2*(tol)) volt,do_reset_1,power_off_1,operational_1)

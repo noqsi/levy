@@ -1,5 +1,5 @@
-// Arbitrary external command codes
-// Anything else is equivalent to NO_COMMAND
+/* Arbitrary external command codes*/
+/* Anything else is equivalent to NO_COMMAND*/
 
 #define NO_COMMAND 0
 #define TURN_ON_1 18
