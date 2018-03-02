@@ -1,4 +1,9 @@
 module Main where
+import Levy.AST
+import Levy.Parse
 
 main :: IO ()
-main = getContents >>= putStrLn 
+main = 
+  do contents <- getContents
+     let ast = parseLevy contents
+     putStrLn (show ast)
