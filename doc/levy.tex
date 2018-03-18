@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+ 
+\begin{document}
+
+\title{Levy: A programming language for TESS sensor limits}
+\author{John P. Doty and Matthew P. Wampler-Doty}
+% \date{}
+\maketitle
+\section{Declarations}
+The only thing you may declare is a counter. A counter declaration is simply the keyword \emph{counter} followed by a comma separated list of counter names and a semicolon. \begin{verbatim}counter do_power_off_1, power_off_wait_1;\end{verbatim}
+Predicates may test counter values, and actiions may manipulate them.
+
+\section{Predicates and actions}
+A typical predicate looks like:
+\begin{verbatim}
+reset_wait_1 > 0
+\end{verbatim}
+Possible operators are the usual:
+\begin{verbatim}
+< <= == >= >
+\end{verbatim}
+The left hand side is either an integer defining a sensor address, or the name of a counter. The right hand side is a floating point value, which may represent an integer. The right hand side may optionally have hysteresis and a unit:
+\begin{verbatim}
+S_CAM1_CCD1_output_gate < -3.5(0.1) volt
+\end{verbatim}
+Here, the predicate will be satisfied if the sensor value falls below -3.5 volts. The hysteresis is 0.1 volt, so the value will have to rise to -3.4 volt for the predicate to stop being satisfied. Possible units are:
+\begin{verbatim}
+Volt
+Amp
+Celsius
+Kelvin
+ADU
+Counts
+\end{verbatim}
+For a counter, the unit must be \verb/Counts/ (the default). For a sensor, the unit must be \verb/ADU/ (the default), or it must match the unit for the sensor in the calibration database.
+
+A typical action looks like:
+\begin{verbatim}
+increment operational_1
+\end{verbatim}
+Some actions manipulate counters:
+\begin{verbatim}
+Increment
+Decrement
+Reset
+\end{verbatim}
+Counters have range \verb/[0, 4294967295]/. \verb/Increment/ and \verb/Decrement/ adjust the counter by 1 as long as it stays in this range. If an operation would push it outside this range, nothing happens. \verb/Reset/ sets the counter to zero.
+
+Other actions are:
+\begin{verbatim}
+NoAction
+ProcessorReset
+ImageProcessReset
+FpeReset
+CameraOff
+CameraOn
+DisableRecorder
+EnableRecorder
+RunProgram
+SpawnProgram         
+\end{verbatim}
+An action in this list should be followed by an integer parameter. The encoding of this parameter is beyond the current scope of this document. Actions have an optional color preceding them. Colors are:
+\begin{verbatim}
+Green
+Yellow
+Red
+\end{verbatim}
+The color of an action will be reported to telemetry when the action executes.
+
+A sequence of actions may follow a predicate: 
+\begin{verbatim}
+reset_wait_1 > RESET_WAIT
+	green increment operational_1		/* We are presumably up and running*/
+	reset reset_wait_1
+;
+\end{verbatim}
+A semicolon terminates the list of actions. All of them will execute in order unless one of them modifies a counter in a way that causes the predicate to be untrue. In that case, subsequent actions in the list will not execute. Thus, any action based on a predicate involving a counter should not modify that counter unless it is the last action in a list.
+
+
+
+
+\end{document}
