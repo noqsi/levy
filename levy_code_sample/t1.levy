@@ -1,0 +1,17 @@
+#include "global_parameters.lh"
+#include "sensors.lh"
+counter operational_1, reset_wait_1;
+
+reset_wait_1 > RESET_WAIT
+	green increment operational_1		/* We are presumably up and running*/
+	clear reset_wait_1
+;
+
+{
+	counter overage;
+	S_CAM4_CCD4_input_gate_2 > 2560 increment overage;
+	overage >10 red clear operational_1;
+	overage ==10 yellow increment operational_1;
+	overage<10 decrement operational_1;
+	
+}

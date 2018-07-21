@@ -1,0 +1,39 @@
+power_off (no automatic power on from this)
+do_power_off (next state is power_off)
+do_power_cycle (next state is normally power_cycle_wait, but see below)
+power_cycle_wait (next state is do_power_on)
+do_power_on (next state is power_on_wait)
+operational_wait (next state is operational)
+operational (camera up and running)
+
+/*
+operational_1==0 should inhibit all limit checks.
+operational_wait_1 counts seconds since camera up.
+*/
+counter operational_1, operational_wait_1;
+
+S_CAM1_POST == Result_Undefined		/* power is off */
+	clear operational_1
+	clear operational_wait_1
+;
+
+S_CAM1_POST==Result_Fail		/* power on, but not functioning */
+	clear operational_1
+	clear operational_wait_1
+;
+
+S_CAM1_POST==Result_Pass
+	increment operational_wait_1
+;
+
+operational_wait_1 > POWER_ON_WAIT
+	green increment operational_1	/* We are presumably up and running*/
+;
+
+
+do_power_cycle > 0
+	red camera_off 1
+	clear operational_1
+	increment power_cycle_in_progress_1
+	clear power_cycle_wait_1
+	clear do_power_cycle_1

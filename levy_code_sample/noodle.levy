@@ -1,0 +1,12 @@
+/*
+The essential idea here is to try FPE resets to recover from modest limit violations and camera power cycles for more serious problems. 
+*/
+
+#include "global_parameters.lh"
+counter do_reset_1, reset_wait_1, reset_count_1;
+counter operational_1;
+
+reset_wait_1 > RESET_WAIT
+	green increment operational_1		/* We are presumably up and running*/
+	clear reset_wait_1
+;
