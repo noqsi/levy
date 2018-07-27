@@ -1,0 +1,99 @@
+/*
+Status code enumeration. Comments refer specifically
+to S_CAM1_POST et al.
+*/
+
+#define Result_Undefined 0 /* camera is off */
+#define Result_Fail 1 /* camera is on but hasn't sent housekeeping yet, or in a while */
+#define Result_Pass 2 /* camera is on and producing housekeeping on-time */
+
+S_SSR0_USED _/ 64000(4095)
+	yellow spawn_program 16384
+;
+
+S_SSR0_USED \_ 59904(4095)
+	green spawn_program 16385
+;
+
+counter fpe0_fails, fpe1_fails, fpe2_fails, fpe3_fails;
+
+S_FPE0_POST == Result_Fail
+	green increment fpe0_fails
+;
+
+S_FPE1_POST == Result_Fail
+	green increment fpe1_fails
+;
+
+S_FPE2_POST == Result_Fail
+	green increment fpe2_fails
+;
+
+S_FPE3_POST == Result_Fail
+	green increment fpe3_fails
+;
+
+S_FPE0_POST == Result_Undefined
+	green clear fpe0_fails
+;
+
+S_FPE1_POST == Result_Undefined
+	green clear fpe1_fails
+;
+
+S_FPE2_POST == Result_Undefined
+	green clear fpe2_fails
+;
+
+S_FPE3_POST == Result_Undefined
+	green clear fpe3_fails
+;
+
+S_FPE0_POST == Result_Pass
+	green clear fpe0_fails
+;
+
+S_FPE1_POST == Result_Pass
+	green clear fpe1_fails
+;
+
+S_FPE2_POST == Result_Pass
+	green clear fpe2_fails
+;
+
+S_FPE3_POST == Result_Pass
+	green clear fpe3_fails
+;
+
+fpe0_fails _/ 6
+	yellow no_action 0
+;
+
+fpe1_fails _/ 6
+	yellow no_action 0
+;
+
+fpe2_fails _/ 6
+	yellow no_action 0
+;
+
+fpe3_fails _/ 6
+	yellow no_action 0
+;
+
+fpe0_fails _/ 60
+	red camera_off 1
+;
+
+fpe1_fails _/ 60
+	red camera_off 2
+;
+
+fpe2_fails _/ 60
+	red camera_off 3
+;
+
+fpe3_fails _/ 60
+	red camera_off 4
+;
+

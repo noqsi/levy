@@ -1,0 +1,3 @@
+S_FPE2_IF_TEMP _/ 1 celsius
+	red no_action 999
+;
