@@ -1,9 +1,1 @@
-.stack-work/
-TAGS
-.dir-locals.el
-dist/
-dist-newstyle/
-cabal.project.local
-result
-*.tix
-levy.nix
+.DS_Store
