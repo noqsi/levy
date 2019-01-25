@@ -1,5 +1,4 @@
 power_off (no automatic power on from this)
-do_power_off (next state is power_off)
 do_power_cycle (next state is normally power_cycle_wait, but see below)
 power_cycle_wait (next state is do_power_on)
 do_power_on (next state is power_on_wait)
@@ -12,17 +11,17 @@ operational_wait_1 counts seconds since camera up.
 */
 counter operational_1, operational_wait_1;
 
-S_CAM1_POST == Result_Undefined		/* power is off */
+S_FPE0_POST == Result_Undefined		/* power is off */
 	clear operational_1
 	clear operational_wait_1
 ;
 
-S_CAM1_POST==Result_Fail		/* power on, but not functioning */
+S_FPE0_POST == Result_Fail		/* power on, but not functioning */
 	clear operational_1
 	clear operational_wait_1
 ;
 
-S_CAM1_POST==Result_Pass
+S_FPE0_POST == Result_Pass
 	increment operational_wait_1
 ;
 
@@ -30,10 +29,30 @@ operational_wait_1 > POWER_ON_WAIT
 	green increment operational_1	/* We are presumably up and running*/
 ;
 
-
-do_power_cycle > 0
+do_power_cycle_1 > 0
 	red camera_off 1
 	clear operational_1
 	increment power_cycle_in_progress_1
 	clear power_cycle_wait_1
+	increment power_cycles_1
 	clear do_power_cycle_1
+
+power_cycles_1 > MAX_POWER_CYCLES
+	clear power_cycle_in_progress_1
+
+S_FPE0_POST == Result_Undefined		/* power is off */
+	increment power_cycle_wait_1
+
+/*
+If we're not doing a power cycle, make sure the above has no effect.
+*/
+
+power_cycle_in_progress_1 == 0
+	clear power_cycle_wait_1
+;
+
+power_cycle_wait_1 > POWER_CYCLE_WAIT
+	green camera_on 1
+	clear power_cycle_in_progress_1
+;
+
