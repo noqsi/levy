@@ -37,35 +37,35 @@ validity to clear the limit violation counters before
 the action logic does something silly.
 */
 
-S_FPE0_PT1000_1 > 30 celsius
+S_FPE0_PT1000_7 > 30 celsius
 	yellow increment fpe0_limit
 ;
 
-S_FPE0_PT1000_1 < 30 celsius
+S_FPE0_PT1000_7 < 30 celsius
 	green clear fpe0_limit
 ;
 
-S_FPE1_PT1000_1 > 30 celsius
+S_FPE1_PT1000_7 > 30 celsius
 	yellow increment fpe1_limit
 ;
 
-S_FPE1_PT1000_1 < 30 celsius
+S_FPE1_PT1000_7 < 30 celsius
 	green clear fpe1_limit
 ;
 
-S_FPE2_PT1000_1 > 30 celsius
+S_FPE2_PT1000_7 > 30 celsius
 	yellow increment fpe2_limit
 ;
 
-S_FPE2_PT1000_1 < 30 celsius
+S_FPE2_PT1000_7 < 30 celsius
 	green clear fpe2_limit
 ;
 
-S_FPE3_PT1000_1 > 30 celsius
+S_FPE3_PT1000_7 > 30 celsius
 	yellow increment fpe3_limit
 ;
 
-S_FPE3_PT1000_1 < 30 celsius
+S_FPE3_PT1000_7 < 30 celsius
 	green clear fpe3_limit
 ;
 
